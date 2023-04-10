@@ -12,48 +12,39 @@ const App = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [genre, setGenre] = useState('');
 
-  const getMovieRequest = async (page = 1, searchType, genre = '') => {
+  const getMovieRequest = async (page = 1, searchType) => { 
     let url = `http://www.omdbapi.com/?apikey=5d7d2681&page=${page}&r=30`;
-    if (searchType === 'search' && searchValue) {
+    if (searchValue && searchType === 'search') { 
       url += `&s=${searchValue}`;
-    } else if (searchType === 'genre' && genre) {
-      url += `&s=&type=&y=&r=json&page=${page}&genre=${genre}`;
+    } else if (genre && searchType === 'genre') {
+      url += `&type=movie&genre=${genre}`;
     }
+    
     const response = await fetch(url);
     const responseJson = await response.json();
     if (responseJson.Search) {
-      let filteredMovies = responseJson.Search;
-      if (searchType === 'genre' && genre) {
-        filteredMovies = responseJson.Search.filter(
-          (movie) => movie.Genre.includes(genre)
-        );
-      }
-      setMovies(filteredMovies);
+      setMovies(responseJson.Search);
       setTotalResults(responseJson.totalResults);
       setCurrentPage(page);
     }
   };
   
-  const handleSearch = (searchType) => {
+  const handleSearch = (searchType) => { 
     if (searchType === 'search' && !searchValue) {
       return;
     } else if (searchType === 'genre' && !genre) {
       return;
     }
-  
-    if (searchType === 'search') {
-      getMovieRequest(1, searchType);
-    } else if (searchType === 'genre' && genre) {
-      getMovieRequest(1, searchType, genre);
-    }
+    
+    getMovieRequest(1, searchType);
   };
 
   useEffect(() => {
     getMovieRequest(currentPage);
-  }, [currentPage, searchValue, genre]);
+  }, [searchValue, currentPage, genre]);
 
   const onPageChange = (pageNumber) => {
-    getMovieRequest(pageNumber);
+    getMovieRequest(pageNumber, "search");
   };
 
   const renderPagination = () => {
@@ -98,7 +89,7 @@ const App = () => {
             setSearchValue={setSearchValue}
             genre={genre}
             setGenre={setGenre}
-            onSearch={() => handleSearch('search')} // add this line
+            onSearch={() => handleSearch('search')} 
           />
         </div>
       </div>

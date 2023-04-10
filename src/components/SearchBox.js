@@ -46,7 +46,6 @@ const SearchBox = (props) => {
           className="form-select"
           id="genreSelect"
           onChange={handleGenreChange}
-          value={props.genre}
         >
           <option value="">Genre</option>
           {genres.map((genre) => (
