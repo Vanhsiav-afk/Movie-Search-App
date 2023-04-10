@@ -1,0 +1,116 @@
+.movie-list-container {
+  height: auto;
+  overflow-y: hidden;
+}
+
+
+  .movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .movie-card {
+    width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .movie-poster {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #666;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .card-text {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #666;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  
+  .movie-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+  
+  .movie-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+  }
+  
+  
+  .movie-details {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    align-items: center;
+    padding: 20px;
+    color: black; /* add this line to change the color of the text */
+  }
+  
+  .movie-details img {
+    max-width: 300px;
+    margin-right: 20px;
+  }
+  .movie-details h2 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  
+  .movie-details p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .bold-text {
+    font-weight: bold;
+  }
